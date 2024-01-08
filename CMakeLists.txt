@@ -1,18 +1,18 @@
-cmake_minimum_required(VERSION 3.28.1)
-project(ImageProcessing)
+cmake_minimum_required(VERSION 3.14)
+project(ImageProcessing VERSION 0.1.0)
 
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 11)
 
+# Set include directories
+include_directories(include)
+
+# Add source files
+file(GLOB SOURCES "src/*.cpp")
+
+# OpenCV package
 find_package(OpenCV REQUIRED)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} opencv::opencv)
-
-# conan_basic_setup()
-# find_package(OpenCV REQUIRED)
-# target_include_directories(${OpenCV_INCLUDE_DIRS})
-# target_link_libraries(ImageProcessing ${OpenCV_LIBS})
-
-# find_package(OpenCV)
-# target_link_libraries(build opencv::opencv)
-
-# add_subdirectory(src)
+# Create executable
+add_executable(ImageProcessing ${SOURCES})
+target_link_libraries(ImageProcessing ${OpenCV_LIBS})
